@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quick Harassment Complaint - LawLink</title>
+  <link rel="stylesheet" href="quick-harassment-complaint.css" />
+  <script src="quick-harassment-complaint.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
+</head>
+<body>
+  <!-- Background Overlay -->
+  <div class="background-overlay"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <i class="fas fa-balance-scale"></i>
+        <span>LawLink</span>
+      </div>
+      <nav class="navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/sections/daily rights/daily-rights.html">Daily Rights</a></li>
+          <li><a href="/sections/real time justice/real-time-justice.html">Real Time Justice</a></li>
+          <li><a href="/sections/legal action generator lead/legal-action-generator.html">Legal Action Generator</a></li>
+          <li><a href="/sections/family and marital rights/family-marital-rights.html">Family & Marital</a></li>
+          <li><a href="/sections/womens safety rights/womens-safety-rights.html" class="active">Women's Rights</a></li>
+          <li><a href="/sections/about/about.html">About</a></li>
+          <li><a href="/sections/contact/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Section -->
+  <section class="qhc-section">
+    <a class="back-link" href="womens-safety-rights.html"><i class="fas fa-arrow-left"></i> Back to Women's Safety & Rights</a>
+
+    <div class="qhc-heading">
+      <i class="fas fa-triangle-exclamation qhc-icon"></i>
+      <h2 class="section-title">Quick Harassment Complaint</h2>
+      <p class="section-description">
+        File a formal harassment complaint in minutes. Pick a category, fill in the essentials, and get a
+        ready-to-send draft — no sign-up or waiting required.
+      </p>
+    </div>
+
+    <!-- Emergency strip -->
+    <div class="helpline-strip">
+      <div><i class="fas fa-phone"></i> Police: <strong>100 / 112</strong></div>
+      <div><i class="fas fa-phone"></i> Women Helpline: <strong>181</strong></div>
+      <div><i class="fas fa-phone"></i> Cyber Crime Helpline: <strong>1930</strong></div>
+      <div><i class="fas fa-globe"></i> Cyber Crime Portal: <strong>cybercrime.gov.in</strong></div>
+    </div>
+
+    <!-- Category selector -->
+    <div class="glass-card">
+      <h3><i class="fas fa-list-check"></i> What kind of harassment is this?</h3>
+      <div class="category-grid" id="categoryGrid">
+        <button type="button" class="category-btn active" data-category="street">
+          <i class="fas fa-person-walking-arrow-right"></i>
+          <span>Street / Public Harassment</span>
+        </button>
+        <button type="button" class="category-btn" data-category="workplace">
+          <i class="fas fa-briefcase"></i>
+          <span>Workplace Harassment</span>
+        </button>
+        <button type="button" class="category-btn" data-category="stalking">
+          <i class="fas fa-user-secret"></i>
+          <span>Stalking</span>
+        </button>
+        <button type="button" class="category-btn" data-category="cyber">
+          <i class="fas fa-mobile-screen"></i>
+          <span>Online / Cyber Harassment</span>
+        </button>
+      </div>
+      <p class="category-info" id="categoryInfo"></p>
+    </div>
+
+    <!-- Quick form -->
+    <div class="glass-card">
+      <h3><i class="fas fa-bolt"></i> Quick Details</h3>
+      <form id="qhcForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="qhcName">Your Full Name</label>
+            <input type="text" id="qhcName" required />
+          </div>
+          <div class="form-group">
+            <label for="qhcDate">Date of Incident</label>
+            <input type="date" id="qhcDate" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="qhcLocation">Location</label>
+            <input type="text" id="qhcLocation" placeholder="e.g. MG Road bus stop, Office - 3rd floor" required />
+          </div>
+          <div class="form-group">
+            <label for="qhcAccused">Accused (name/description, if known)</label>
+            <input type="text" id="qhcAccused" placeholder="e.g. Unknown man on a red bike / Colleague, Sales team" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="qhcDescription">Describe what happened</label>
+          <textarea id="qhcDescription" rows="4" placeholder="Briefly describe the incident — what was said or done." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="qhcWitness">Witnesses (optional)</label>
+          <input type="text" id="qhcWitness" placeholder="Names/contact of anyone who saw it" />
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-file-circle-plus"></i> Generate Complaint</button>
+      </form>
+
+      <div id="qhcOutputWrap" class="hidden">
+        <h3><i class="fas fa-file-lines"></i> Draft Preview</h3>
+        <pre id="qhcOutput"></pre>
+        <div class="output-actions">
+          <button id="qhcDownloadPdf" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> Download as PDF</button>
+          <button id="qhcCopy" class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Text</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <i class="fas fa-circle-info"></i>
+      This tool generates a first draft only and is not legal advice. In case of immediate danger, please
+      contact the police (100/112) directly before filing any written complaint.
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 LawLink. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>
