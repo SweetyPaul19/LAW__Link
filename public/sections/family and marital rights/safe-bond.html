@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SafeBond - LawLink</title>
+  <link rel="stylesheet" href="safe-bond.css" />
+  <script src="safe-bond.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
+</head>
+<body>
+  <!-- Background Overlay -->
+  <div class="background-overlay"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <i class="fas fa-balance-scale"></i>
+        <span>LawLink</span>
+      </div>
+      <nav class="navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/sections/daily rights/daily-rights.html">Daily Rights</a></li>
+          <li><a href="/sections/real time justice/real-time-justice.html">Real Time Justice</a></li>
+          <li><a href="/sections/legal action generator lead/legal-action-generator.html">Legal Action Generator</a></li>
+          <li><a href="/sections/family and marital rights/family-marital-rights.html" class="active">Family & Marital</a></li>
+          <li><a href="/sections/womens safety rights/womens-safety-rights.html">Women's Rights</a></li>
+          <li><a href="/sections/about/about.html">About</a></li>
+          <li><a href="/sections/contact/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Section -->
+  <section class="sb-section">
+    <a class="back-link" href="family-marital-rights.html"><i class="fas fa-arrow-left"></i> Back to Family & Marital Rights</a>
+
+    <div class="sb-heading">
+      <i class="fas fa-shield-halved sb-icon"></i>
+      <h2 class="section-title">SafeBond</h2>
+      <p class="section-description">
+        A private, encrypted logbook for sensitive incidents. Entries are locked with your passphrase and
+        encrypted right in your browser — nobody, including LawLink, can read them without it.
+      </p>
+    </div>
+
+    <!-- LOCK SCREEN -->
+    <div id="lockScreen" class="glass-card lock-card">
+      <div id="lockCreateMode">
+        <h3><i class="fas fa-lock"></i> <span id="lockTitle">Unlock SafeBond</span></h3>
+        <p class="hint" id="lockHint">Enter your passphrase to view your entries.</p>
+        <input type="password" id="passphraseInput" placeholder="Enter passphrase" autocomplete="off" />
+        <div class="lock-actions">
+          <button id="unlockBtn" class="btn btn-primary"><i class="fas fa-unlock"></i> Unlock</button>
+          <button id="resetBtn" class="btn btn-danger-outline"><i class="fas fa-trash"></i> Erase & Start Over</button>
+        </div>
+        <p class="error-msg" id="lockError"></p>
+      </div>
+    </div>
+
+    <!-- MAIN APP (hidden until unlocked) -->
+    <div id="sbApp" class="hidden">
+
+      <div class="glass-card form-card">
+        <h3><i class="fas fa-pen-to-square"></i> New Entry</h3>
+        <form id="entryForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="entryDate">Date</label>
+              <input type="date" id="entryDate" required />
+            </div>
+            <div class="form-group">
+              <label for="entryCategory">Category</label>
+              <select id="entryCategory" required>
+                <option value="">Select category</option>
+                <option value="Dowry Demand">Dowry Demand</option>
+                <option value="Physical Abuse">Physical Abuse</option>
+                <option value="Verbal / Emotional Abuse">Verbal / Emotional Abuse</option>
+                <option value="Financial Abuse">Financial Abuse</option>
+                <option value="Threat / Intimidation">Threat / Intimidation</option>
+                <option value="Child Custody Concern">Child Custody Concern</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="entryLocation">Location (optional)</label>
+            <input type="text" id="entryLocation" placeholder="e.g. Home, In-laws' residence" />
+          </div>
+          <div class="form-group">
+            <label for="entryWitness">Witnesses (optional)</label>
+            <input type="text" id="entryWitness" placeholder="Names of anyone present" />
+          </div>
+          <div class="form-group">
+            <label for="entryDescription">What happened</label>
+            <textarea id="entryDescription" rows="4" placeholder="Describe the incident in as much detail as you can." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-lock"></i> Encrypt & Save Entry</button>
+        </form>
+      </div>
+
+      <div class="entries-header">
+        <h3><i class="fas fa-book-journal-whills"></i> Your Logged Entries (<span id="entryCount">0</span>)</h3>
+        <div class="entries-actions">
+          <button id="exportBtn" class="btn btn-secondary"><i class="fas fa-download"></i> Export Encrypted Backup</button>
+          <label class="btn btn-secondary file-label">
+            <i class="fas fa-upload"></i> Import Backup
+            <input type="file" id="importFile" accept="application/json" hidden />
+          </label>
+          <button id="lockAgainBtn" class="btn btn-secondary"><i class="fas fa-lock"></i> Lock</button>
+        </div>
+      </div>
+
+      <div id="entriesList" class="entries-list">
+        <p class="empty-state" id="emptyState">No entries yet. Anything you log here stays encrypted and private to you.</p>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <i class="fas fa-circle-info"></i>
+      SafeBond stores encrypted data only in this browser (localStorage). Clearing your browser data or switching
+      devices will remove access unless you export a backup first. This is a private record-keeping tool, not a
+      substitute for reporting to authorities or seeking professional legal help.
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 LawLink. All rights reserved.</p>
+  </footer>
+</body>
+</html>

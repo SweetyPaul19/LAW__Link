@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JusticeMate - LawLink</title>
+  <link rel="stylesheet" href="justicemate.css" />
+  <script src="justicemate.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
+</head>
+<body>
+  <!-- Background Overlay -->
+  <div class="background-overlay"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <i class="fas fa-balance-scale"></i>
+        <span>LawLink</span>
+      </div>
+      <nav class="navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/sections/daily rights/daily-rights.html">Daily Rights</a></li>
+          <li><a href="/sections/real time justice/real-time-justice.html">Real Time Justice</a></li>
+          <li><a href="/sections/legal action generator lead/legal-action-generator.html">Legal Action Generator</a></li>
+          <li><a href="/sections/family and marital rights/family-marital-rights.html" class="active">Family & Marital</a></li>
+          <li><a href="/sections/womens safety rights/womens-safety-rights.html">Women's Rights</a></li>
+          <li><a href="/sections/about/about.html">About</a></li>
+          <li><a href="/sections/contact/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Section -->
+  <section class="jm-section">
+    <a class="back-link" href="family-marital-rights.html"><i class="fas fa-arrow-left"></i> Back to Family & Marital Rights</a>
+
+    <div class="jm-heading">
+      <i class="fas fa-people-roof jm-icon"></i>
+      <h2 class="section-title">JusticeMate</h2>
+      <p class="section-description">
+        Understand your rights and generate the first legal document for dowry harassment, domestic violence,
+        or divorce — with guidance based on Indian law.
+      </p>
+    </div>
+
+    <!-- Emergency strip -->
+    <div class="helpline-strip">
+      <div><i class="fas fa-phone"></i> Women Helpline: <strong>181</strong></div>
+      <div><i class="fas fa-phone"></i> Domestic Violence Helpline: <strong>181 / 1091</strong></div>
+      <div><i class="fas fa-phone"></i> Police: <strong>112</strong></div>
+      <div><i class="fas fa-phone"></i> National Commission for Women: <strong>011-26942369</strong></div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="jm-tabs" role="tablist">
+      <button class="jm-tab active" data-tab="dowry"><i class="fas fa-hand-holding-dollar"></i> Dowry Prohibition</button>
+      <button class="jm-tab" data-tab="dv"><i class="fas fa-house-crack"></i> Domestic Violence</button>
+      <button class="jm-tab" data-tab="divorce"><i class="fas fa-file-signature"></i> Divorce Support</button>
+    </div>
+
+    <!-- Dowry Panel -->
+    <div class="jm-panel" id="panel-dowry">
+      <div class="glass-card info-card">
+        <h3><i class="fas fa-scale-balanced"></i> Know Your Rights: Dowry Prohibition</h3>
+        <ul>
+          <li>The <strong>Dowry Prohibition Act, 1961</strong> makes giving, taking, or demanding dowry a punishable offence.</li>
+          <li><strong>Section 498A, IPC</strong> (now Section 85, Bharatiya Nyaya Sanhita) covers cruelty by husband or his relatives, including dowry harassment.</li>
+          <li>You can file a complaint at the nearest police station, a Women's Cell, or approach a Dowry Prohibition Officer.</li>
+          <li>Keep evidence: messages, receipts, witness names, and dated notes of every incident — SafeBond can help you log these privately.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Domestic Violence Panel -->
+    <div class="jm-panel hidden" id="panel-dv">
+      <div class="glass-card info-card">
+        <h3><i class="fas fa-scale-balanced"></i> Know Your Rights: Domestic Violence</h3>
+        <ul>
+          <li>The <strong>Protection of Women from Domestic Violence Act, 2005 (PWDVA)</strong> covers physical, emotional, sexual, verbal, and economic abuse.</li>
+          <li>You can seek a <strong>Protection Order</strong>, <strong>Residence Order</strong>, and <strong>Monetary Relief</strong> through a Magistrate.</li>
+          <li>A Protection Officer or registered NGO can help you file a Domestic Incident Report (DIR) free of cost.</li>
+          <li>You do not need to file for divorce to seek protection — DV relief is available regardless of your marital proceedings.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divorce Panel -->
+    <div class="jm-panel hidden" id="panel-divorce">
+      <div class="glass-card info-card">
+        <h3><i class="fas fa-scale-balanced"></i> Know Your Rights: Divorce</h3>
+        <ul>
+          <li>Grounds for divorce vary by personal law (e.g. Hindu Marriage Act, Special Marriage Act, Muslim Personal Law) and typically include cruelty, desertion, and mutual consent.</li>
+          <li><strong>Mutual consent divorce</strong> is usually faster and requires both parties to agree on terms including maintenance and custody.</li>
+          <li>You may be entitled to <strong>maintenance/alimony</strong> and <strong>child custody</strong> arrangements — courts prioritise the child's welfare.</li>
+          <li>Consider mediation or a family court counsellor before filing, where available — it can reduce cost and time.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Legal Notice Generator (shared) -->
+    <div class="glass-card generator-card">
+      <h3><i class="fas fa-file-pen"></i> Generate a Legal Notice / Complaint Draft</h3>
+      <p class="hint">This creates a formal first draft you can refine with a lawyer before sending or filing.</p>
+      <form id="jmForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="jmName">Your Full Name</label>
+            <input type="text" id="jmName" required />
+          </div>
+          <div class="form-group">
+            <label for="jmDate">Date</label>
+            <input type="date" id="jmDate" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="jmAddress">Your Address</label>
+            <input type="text" id="jmAddress" required />
+          </div>
+          <div class="form-group">
+            <label for="jmRespondent">Respondent's Name (e.g. spouse, in-law)</label>
+            <input type="text" id="jmRespondent" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="jmType">Document Type</label>
+          <select id="jmType">
+            <option value="dowry">Dowry Harassment Complaint</option>
+            <option value="dv">Domestic Violence Complaint (PWDVA)</option>
+            <option value="divorce">Divorce / Separation Notice</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="jmDetails">Details of Incident(s)</label>
+          <textarea id="jmDetails" rows="5" placeholder="Describe dates, incidents, and any demands or harm caused." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="jmRelief">Relief / Action Requested</label>
+          <textarea id="jmRelief" rows="3" placeholder="e.g. protection order, return of dowry articles, maintenance, custody terms" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-file-circle-plus"></i> Generate Draft</button>
+      </form>
+
+      <div id="jmOutputWrap" class="hidden">
+        <h3><i class="fas fa-file-lines"></i> Draft Preview</h3>
+        <pre id="jmOutput"></pre>
+        <div class="output-actions">
+          <button id="jmDownloadPdf" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> Download as PDF</button>
+          <button id="jmCopy" class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Text</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <i class="fas fa-circle-info"></i>
+      JusticeMate provides general information and a starting draft only — it is not legal advice. Please
+      consult a qualified advocate or a legal aid clinic before filing any document.
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 LawLink. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>
