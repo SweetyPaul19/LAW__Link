@@ -127,26 +127,54 @@ app.get('/api/live-location/:trackId', async (req, res) => {
 // === Multer for File Uploads ===
 const upload = multer({ dest: 'uploads/' });
 
-// === OpenRouter/GROQ AI Call Helper ===
-const callOpenRouter = async (messages, origin) => {
+// === Gemini AI Call Helper ===
+const callGemini = async (messages) => {
+  const apiKey = process.env.GEMINI_API_KEY;
+  const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+
+  if (!apiKey) {
+    throw new Error('GEMINI_API_KEY is not configured on the server.');
+  }
+
   try {
+    const systemMessage = messages.find(message => message.role === 'system');
+    const contents = messages
+      .filter(message => message.role !== 'system')
+      .map(message => ({
+        role: message.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: message.content }]
+      }));
+
     const response = await axios.post(
-      'https://api.groq.com/openai/v1/chat/completions',
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
       {
-        model: 'meta-llama/llama-4-scout-17b-16e-instruct',
-        messages
+        ...(systemMessage && {
+          systemInstruction: {
+            parts: [{ text: systemMessage.content }]
+          }
+        }),
+        contents
       },
       {
         headers: {
-          'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          'Content-Type': 'application/json',
-          'HTTP-Referer': origin || 'https://legal-genie-phi.vercel.app/'
+          'x-goog-api-key': apiKey,
+          'Content-Type': 'application/json'
         }
       }
     );
-    return response.data.choices[0].message.content;
+
+    const text = response.data.candidates?.[0]?.content?.parts
+      ?.map(part => part.text || '')
+      .join('')
+      .trim();
+
+    if (!text) {
+      throw new Error('Gemini returned an empty response.');
+    }
+
+    return text;
   } catch (error) {
-    console.error('GROQ API Error:', error.response?.data || error.message);
+    console.error('Gemini API Error:', error.response?.data || error.message);
     throw new Error('Failed to get AI response. Please try again.');
   }
 };
@@ -161,7 +189,7 @@ app.post('/api/ask', apiLimiter, async (req, res) => {
 
   try {
     // 1. Use AI to extract relevant Indian laws (e.g., IPC sections, articles)
-    const extractedLaws = await callOpenRouter([
+    const extractedLaws = await callGemini([
       {
         role: 'system',
         content:
@@ -173,7 +201,7 @@ app.post('/api/ask', apiLimiter, async (req, res) => {
     console.log('📜 Extracted Laws:', extractedLaws);
 
     // 2. Generate AI answer to user's question
-    const aiAnswer = await callOpenRouter([
+    const aiAnswer = await callGemini([
       {
         role: 'system',
         content:
@@ -222,7 +250,7 @@ app.post('/api/generate-complaint', apiLimiter, async (req, res) => {
 - Location: ${location}
 - Description: ${description}`;
 
-    const complaintText = await callOpenRouter([
+    const complaintText = await callGemini([
       { role: 'system', content: 'You are a legal assistant helping write formal Indian legal complaints.' },
       { role: 'user', content: prompt }
     ], req.headers.origin);

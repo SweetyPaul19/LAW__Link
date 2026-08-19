@@ -9,14 +9,14 @@ It offers AI-generated complaint letters, smart reporting features, and emergenc
 ✔️ AI-powered legal complaint builder 🤖  
 ✔️ Silent voice and video logging for evidence 🧾🎤📹  
 ✔️ Category-based legal toolkits for everyday issues 🗂️  
-✔️ Groq LLaMA-4 integrated legal chatbot 💬  
+✔️ Gemini-powered legal chatbot 💬
 ✔️ Works seamlessly on both localhost & Vercel 🚀  
 
 🎯 Innovation & Impact  
 
 🌍 What Makes LawLink Special?  
 🔹 Built for real-time justice with instant evidence capture and reporting  
-🔹 🧠 Uses GROQ’s LLaMA-4-SCOUT-17B for formal legal drafting  
+🔹 🧠 Uses Google Gemini for formal legal drafting
 🔹 Supports vulnerable groups like women and families with dedicated modules  
 🔹 🕵️ Detects, logs, and formats complaints for real-world action  
 🔹 Combines AI, law, and empathy — all in one modern, clean experience  
@@ -72,7 +72,7 @@ It offers AI-generated complaint letters, smart reporting features, and emergenc
 
 🧠 Backend & AI  
 ‣ Node.js + Express server  
-‣ AI via Groq LLaMA-4-Scout 17B  
+‣ AI via Google Gemini
 ‣ In-memory auth system (login/signup)  
 ‣ File handling via Multer  
 ‣ Rate-limited endpoints for AI use  
@@ -111,7 +111,9 @@ npm install
 
 3️⃣ Setup .env File  
 ```ini
-OPENROUTER_API_KEY=your_groq_key
+GEMINI_API_KEY=your_gemini_key
+# Optional: override the default model (gemini-2.5-flash)
+GEMINI_MODEL=gemini-2.5-flash
 ```
 
 4️⃣ Run the Server  
