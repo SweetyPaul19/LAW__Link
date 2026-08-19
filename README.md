@@ -11,17 +11,26 @@ It offers AI-generated complaint letters, smart reporting features, and emergenc
 ✔️ AI-powered legal complaint builder 🤖  
 ✔️ Silent voice and video logging for evidence 🧾🎤📹  
 ✔️ Category-based legal toolkits for everyday issues 🗂️  
-✔️ Groq LLaMA-4 integrated legal chatbot 💬  
+✔️ Gemini-powered legal chatbot 💬
 ✔️ Works seamlessly on both localhost & Vercel 🚀  
 
 ## 🎯 Innovation & Impact  
 
+<<<<<<< HEAD
+🌍 What Makes LawLink Special?  
+🔹 Built for real-time justice with instant evidence capture and reporting  
+🔹 🧠 Uses Google Gemini for formal legal drafting
+🔹 Supports vulnerable groups like women and families with dedicated modules  
+🔹 🕵️ Detects, logs, and formats complaints for real-world action  
+🔹 Combines AI, law, and empathy — all in one modern, clean experience  
+=======
 ### 🌍 What Makes LawLink Special?  
  🔹 Built for real-time justice with instant evidence capture and reporting  
  🔹 🧠 Uses GROQ’s LLaMA-4-SCOUT-17B for formal legal drafting  
  🔹 Supports vulnerable groups like women and families with dedicated modules  
  🔹 🕵️ Detects, logs, and formats complaints for real-world action  
  🔹 Combines AI, law, and empathy — all in one modern, clean experience  
+>>>>>>> 4ba65e1eb1ba902c3b0ea6b3725ba731d3549ca3
 
 ### 👥 Who Can Use It?  
 👩‍⚖️ Citizens – File complaints, understand your rights, stay protected  
@@ -74,7 +83,7 @@ It offers AI-generated complaint letters, smart reporting features, and emergenc
 
 ### 🧠 Backend & AI  
 ‣ Node.js + Express server  
-‣ AI via Groq LLaMA-4-Scout 17B  
+‣ AI via Google Gemini
 ‣ In-memory auth system (login/signup)  
 ‣ File handling via Multer  
 ‣ Rate-limited endpoints for AI use  
@@ -113,7 +122,13 @@ npm install
 
 3️⃣ Setup .env File  
 ```ini
+<<<<<<< HEAD
+GEMINI_API_KEY=your_gemini_key
+# Optional: override the default model (gemini-2.5-flash)
+GEMINI_MODEL=gemini-2.5-flash
+=======
 API_KEY=your_groq_key
+>>>>>>> 4ba65e1eb1ba902c3b0ea6b3725ba731d3549ca3
 ```
 
 4️⃣ Run the Server  
@@ -200,7 +215,14 @@ Want to improve LawLink? 🧑‍💻
 🐛 Found a bug? Let us know  
 💡 Have ideas? Suggest features or UI upgrades  
 
+<<<<<<< HEAD
 🔗 Connect with Developer
 👨‍💻 Made with love
 Project: https://legal-genie-phi.vercel.app
+=======
+🔗 Connect with Developer  
+👨‍💻 Made with love  
+Project: https://legal-genie-phi.vercel.app  
+>>>>>>> 388a5c7e7821dbda2e02d53db05b563449ed345c
 📬 Contact: lawlinkproj@gmail.com
+
